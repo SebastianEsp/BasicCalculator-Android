@@ -1,0 +1,18 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <!-- Help -->
+    <item android:id="@+id/action_help"
+        android:title="About"
+        app:showAsAction="never"/>
+
+    <!-- Check updates -->
+    <item android:id="@+id/action_check_updates"
+        android:title="Updates"
+        app:showAsAction="never" />
+
+
+</menu>

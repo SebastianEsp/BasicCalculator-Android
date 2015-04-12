@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Basic Calculator</string>
+
+    <!-- Main Activity -->
+    <string name="action_settings">Settings</string>
+    <color name="background_Color">#232323</color>
+    <color name="editText_ResultViewColor">#ffffff</color>
+
+    <!-- Row 6 -->
+    <string name="button_MC">MC</string>
+    <string name="button_MR">MR</string>
+    <string name="button_MS">MS</string>
+    <string name="button_Mplus">M+</string>
+    <string name="button_Mminus">M-</string>
+
+    <!-- Row 5 -->
+    <string name="button_Delete"></string>
+    <string name="button_CE">CE</string>
+    <string name="button_C">C</string>
+    <string name="button_PlusMinus">±</string>
+    <string name="button_Root">√</string>
+
+    <!-- Row 4 -->
+    <string name="button_Seven">7</string>
+    <string name="button_Eight">8</string>
+    <string name="button_Nine">9</string>
+    <string name="button_Division">/</string>
+    <string name="button_Modulus">%</string>
+
+    <!-- Row 3 -->
+    <string name="button_Four">4</string>
+    <string name="button_Five">5</string>
+    <string name="button_Six">6</string>
+    <string name="button_Multiplication">*</string>
+    <string name="button_1x">1/x</string>
+
+    <!-- Row 2 -->
+    <string name="button_One">1</string>
+    <string name="button_Two">2</string>
+    <string name="button_Three">3</string>
+    <string name="button_Minus">-</string>
+
+    <!-- Row 1 -->
+    <string name="button_Zero">0</string>
+    <string name="button_Comma">,</string>
+    <string name="button_Plus">+</string>
+    <string name="button_Equals">=</string>
+
+</resources>
