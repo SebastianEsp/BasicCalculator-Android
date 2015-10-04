@@ -42,7 +42,7 @@
 
     <!-- Row 1 -->
     <string name="button_Zero">0</string>
-    <string name="button_Comma">,</string>
+    <string name="button_Comma">.</string>
     <string name="button_Plus">+</string>
     <string name="button_Equals">=</string>
 

@@ -15,7 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.*;
+
+import static java.lang.Double.valueOf;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -139,25 +143,61 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         Button b = (Button)v;
         String buttonText = b.getText().toString();
+        String numAsString = editText_ResultView.getText().toString();
+//        All commented code is to do with CE
+//        List pressedButtons = new LinkedList();
+//        Integer counter = 0;
+//        String s = "";
 
         if (!buttonText .equals("="))
         {
             editText_ResultView.append(buttonText);
+//            pressedButtons.add(buttonText);
+//            counter++;
         }
-        else if (buttonText .equals("="))
+//        if (buttonText .equals("+") || buttonText .equals("-") || buttonText .equals("*") || buttonText .equals("/"))
+//        {
+//         pressedButtons.clear();
+//        }
+        switch (buttonText)
         {
-            calculate(editText_ResultView.getText().toString());
-        }
+            case "=":
+                calculate(ResultViewRegex(editText_ResultView.getText().toString()));
+            break;
 
+            case "C":
+                editText_ResultView.setText("");
+            break;
+
+            case "√":
+                Double numAsDouble = valueOf(numAsString);
+                Double sqrt = Math.sqrt(numAsDouble);
+                editText_ResultView.setText(sqrt.toString());
+            break;
+
+//            case "CE":
+//                for (int i=0; i < pressedButtons.size(); i++)
+//                {
+//                    s = s + pressedButtons.get(i);
+//                }
+//                editText_ResultView.setText(s);
+//            break;
+        }
     }
 
-    private void calculate(String text)
+    //Handles the regex that splits a calculation into two parts
+    private Matcher ResultViewRegex(String text)
+    {
+        Pattern p = Pattern.compile("(\\d+)(\\D*)(\\d*)(\\D{1})(\\d+)(\\D*)(\\d*)");
+        Matcher m = p.matcher(text);
+        return m;
+    }
+
+    private void calculate(Matcher m)
     {
         String firstHalf;
         String secondHalf;
-
-        Pattern p = Pattern.compile("(\\d+)(\\D*)(\\d*)(\\D{1})(\\d+)(\\D*)(\\d*)");
-        Matcher m = p.matcher(text);
+        Double result;
 
         if(m.find())
         {
@@ -167,19 +207,32 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     //The calculation as an addition
                     firstHalf = m.group(1).toString() + m.group(2).toString() + m.group(3).toString();
                     secondHalf = m.group(5).toString() + m.group(6).toString() + m.group(7).toString();
-                    //TO DO! Get first- & secondHalf as Integers
+                    result = valueOf(firstHalf) + valueOf(secondHalf);
+                    editText_ResultView.setText(result.toString());
                 break;
 
                 case "-":
                     //The calculation as an subtraction
+                    firstHalf = m.group(1).toString() + m.group(2).toString() + m.group(3).toString();
+                    secondHalf = m.group(5).toString() + m.group(6).toString() + m.group(7).toString();
+                    result = valueOf(firstHalf) - valueOf(secondHalf);
+                    editText_ResultView.setText(result.toString());
                 break;
 
                 case "*":
                     //The calculation as an multiplication
+                    firstHalf = m.group(1).toString() + m.group(2).toString() + m.group(3).toString();
+                    secondHalf = m.group(5).toString() + m.group(6).toString() + m.group(7).toString();
+                    result = valueOf(firstHalf) * valueOf(secondHalf);
+                    editText_ResultView.setText(result.toString());
                 break;
 
                 case "/":
                     //The calculation as an division
+                    firstHalf = m.group(1).toString() + m.group(2).toString() + m.group(3).toString();
+                    secondHalf = m.group(5).toString() + m.group(6).toString() + m.group(7).toString();
+                    result = valueOf(firstHalf) / valueOf(secondHalf);
+                    editText_ResultView.setText(result.toString());
                 break;
             }
         }
