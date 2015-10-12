@@ -25,7 +25,6 @@ import static java.lang.Double.valueOf;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     EditText editText_ResultView;
-
     Button button_MC;
     Button button_MR;
     Button button_MS;
@@ -144,21 +143,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Button b = (Button)v;
         String buttonText = b.getText().toString();
         String numAsString = editText_ResultView.getText().toString();
-//        All commented code is to do with CE
-//        List pressedButtons = new LinkedList();
-//        Integer counter = 0;
-//        String s = "";
 
         if (!buttonText .equals("="))
         {
             editText_ResultView.append(buttonText);
-//            pressedButtons.add(buttonText);
-//            counter++;
         }
-//        if (buttonText .equals("+") || buttonText .equals("-") || buttonText .equals("*") || buttonText .equals("/"))
-//        {
-//         pressedButtons.clear();
-//        }
         switch (buttonText)
         {
             case "=":
@@ -174,14 +163,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Double sqrt = Math.sqrt(numAsDouble);
                 editText_ResultView.setText(sqrt.toString());
             break;
-
-//            case "CE":
-//                for (int i=0; i < pressedButtons.size(); i++)
-//                {
-//                    s = s + pressedButtons.get(i);
-//                }
-//                editText_ResultView.setText(s);
-//            break;
         }
     }
 
