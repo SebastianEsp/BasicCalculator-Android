@@ -54,6 +54,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button button_Zero;
     Button button_Comma;
 
+    Double memory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +165,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Double sqrt = Math.sqrt(numAsDouble);
                 editText_ResultView.setText(sqrt.toString());
             break;
+
+            case "MC":
+                MemoryClear();
+            break;
+
+            case "MS":
+                MemoryStore();
+            break;
         }
+    }
+
+    public void MemoryClear()
+    {
+        memory = 0.0;
+    }
+
+    public void MemoryStore()
+    {
+        memory = valueOf(editText_ResultView.getText().toString());
     }
 
     //Handles the regex that splits a calculation into two parts
