@@ -7,16 +7,11 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.regex.*;
 
 import static java.lang.Double.valueOf;
@@ -55,7 +50,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button button_Comma;
 
     Double memory;
-
+    ArrayList<String> appendList = new ArrayList<>();
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +117,24 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         button_Comma.setOnClickListener(this);
         button_Equals = (Button) findViewById(R.id.button_Equals);
         button_Equals.setOnClickListener(this);
+
+        appendList.add("0");
+        appendList.add("1");
+        appendList.add("2");
+        appendList.add("3");
+        appendList.add("4");
+        appendList.add("5");
+        appendList.add("6");
+        appendList.add("7");
+        appendList.add("8");
+        appendList.add("9");
+        appendList.add("+");
+        appendList.add("-");
+        appendList.add("*");
+        appendList.add("/");
+        appendList.add(".");
+
+        context = getApplicationContext();
     }
 
         @Override
@@ -146,7 +160,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         String buttonText = b.getText().toString();
         String numAsString = editText_ResultView.getText().toString();
 
-        if (!buttonText .equals("=") || !buttonText .equals("MS") || !buttonText .equals("MC") || !buttonText .equals("MR") || !buttonText .equals("M+"))
+        if (appendList.contains(buttonText))
         {
             editText_ResultView.append(buttonText);
         }
@@ -181,17 +195,23 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case "M+":
                   MemoryAdd();
             break;
+
+            case "M-":
+                MemorySubtract();
+            break;
         }
     }
 
     public void MemoryClear()
     {
         memory = 0.0;
+        Toast.makeText(context, "The memory was cleared", Toast.LENGTH_SHORT).show();
     }
 
     public void MemoryStore()
     {
         memory = valueOf(editText_ResultView.getText().toString());
+        Toast.makeText(context, editText_ResultView.getText().toString() + " was saved in memory", Toast.LENGTH_SHORT).show();
     }
 
     private void MemoryAdd()
@@ -199,12 +219,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         memory = memory + valueOf(editText_ResultView.getText().toString());
     }
 
+    private void MemorySubtract()
+    {
+        memory = memory - valueOf(editText_ResultView.getText().toString());
+    }
+
     //Handles the regex that splits a calculation into two parts
     private Matcher ResultViewRegex(String text)
     {
         Pattern p = Pattern.compile("(\\d+)(\\D*)(\\d*)(\\D{1})(\\d+)(\\D*)(\\d*)");
-        Matcher m = p.matcher(text);
-        return m;
+        return p.matcher(text);
     }
 
     private void calculate(Matcher m)
