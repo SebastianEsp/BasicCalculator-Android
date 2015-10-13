@@ -146,7 +146,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         String buttonText = b.getText().toString();
         String numAsString = editText_ResultView.getText().toString();
 
-        if (!buttonText .equals("="))
+        if (!buttonText .equals("=") || !buttonText .equals("MS") || !buttonText .equals("MC") || !buttonText .equals("MR") || !buttonText .equals("M+"))
         {
             editText_ResultView.append(buttonText);
         }
@@ -173,6 +173,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case "MS":
                 MemoryStore();
             break;
+
+            case "MR":
+                editText_ResultView.setText(memory.toString());
+            break;
+
+            case "M+":
+                  MemoryAdd();
+            break;
         }
     }
 
@@ -184,6 +192,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void MemoryStore()
     {
         memory = valueOf(editText_ResultView.getText().toString());
+    }
+
+    private void MemoryAdd()
+    {
+        memory = memory + valueOf(editText_ResultView.getText().toString());
     }
 
     //Handles the regex that splits a calculation into two parts
